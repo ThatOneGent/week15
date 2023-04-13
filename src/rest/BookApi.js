@@ -1,7 +1,7 @@
 //const HOUSES_ENDPOINT = 'https://ancient-taiga-31359.herokuapp.com/api/houses';
-const HOUSES_ENDPOINT = 'https://640d4b41b07afc3b0daaeb4e.mockapi.io/Houses';
+const HOUSES_ENDPOINT = 'https://640d4b41b07afc3b0daaeb4e.mockapi.io/books';
 
-class HousesApi {
+class BookApi {
 
     get = async () => {
 
@@ -16,15 +16,15 @@ class HousesApi {
 
     }
 
-    put = async (house) => {
+    put = async (shelf) => {
 
         try {
-            const resp = await fetch(`${HOUSES_ENDPOINT}/${house.id}`, {
+            const resp = await fetch(`${HOUSES_ENDPOINT}/${shelf.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(house)
+                body: JSON.stringify(shelf)
 
             });
             return await resp.json();
@@ -35,4 +35,4 @@ class HousesApi {
     }
 }
 
-export const houseApi = new HousesApi();
+export const bookApi = new BookApi();
