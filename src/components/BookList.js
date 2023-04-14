@@ -1,11 +1,12 @@
 import React from 'react';
 import { BookShelf } from './Bookshelf';
 import { bookApi } from '../rest/BookApi';
+import { NewShelfForm } from './NewShelfForm';
 
 
 export class BookcaseList extends React.Component {
     state = {
-        shelves : []
+        shelves: []
     };
 
     componentDidMount() {
@@ -14,7 +15,7 @@ export class BookcaseList extends React.Component {
 
     fetchBookShelf = async () => {
         const shelves = await bookApi.get();
-        this.setState({shelves});
+        this.setState({ shelves });
     };
 
 
@@ -23,23 +24,42 @@ export class BookcaseList extends React.Component {
         this.fetchBookShelf();
     };
 
+    deleteBookcase = async (updatedShelf) => {
+        await bookApi.delete(updatedShelf);
+        this.fetchBookShelf();
+    };
+
+    addBookcase = async (newShelf) => {
+        let newBookCase = { Bookcase: newShelf.shelfName, books: [] }
+        await bookApi.post(newBookCase);
+        this.fetchBookShelf();
+    };
+
+
+
     render() {
         return (
-            <div className="bookshelf-list">
-                {this.state.shelves.map((bookShelf) => (
-                    <BookShelf
-                     bookShelf={bookShelf}
-                     key={bookShelf.id}
-                     updateBookcase={this.updateBookcase}
-                     />
-                ))}
-                
-                <button>Add new Bookshelf</button>
+            <div className="container">
+                <div className='row'>
+                    <div className='col-md'>
+                        {this.state.shelves.map((bookShelf) => (
+                            <BookShelf
+                                bookShelf={bookShelf}
+                                key={bookShelf.id}
+                                updateBookcase={this.updateBookcase}
+                                deleteBookcase={this.deleteBookcase}
+                            />
+                        ))}
+                    </div>
+                    <div  className='col-md'>
+                    <NewShelfForm addBookcase={this.addBookcase} />
+                    </div>
+                </div>
             </div>
-            
-                //add a new book case here
-                
-            
+
+            //add a new book case here
+
+
         )
     }
 }

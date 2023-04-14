@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.bookshelf-table {
+  width:100%;
+}
+
+.bookshelf-table tr{
+  border-bottom: #282c34;
+}

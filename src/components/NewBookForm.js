@@ -19,7 +19,7 @@ export const NewBookForm = (props) => {
     };
 
     return (
-        <div>
+        <div className="container ">
             <h4>Add a new book</h4>
             <form onSubmit={onSubmit}>
                 <input
@@ -36,7 +36,7 @@ export const NewBookForm = (props) => {
                     value={author}
                 />
 
-            <button type='submit'>Add book</button>
+            <button className="btn btn-primary" type='submit'>Add book</button>
                     
 
             </form>

@@ -16,6 +16,22 @@ class BookApi {
 
     }
 
+    post = async (shelf) => {
+        try {
+            const resp = await fetch(`${BOOKURL}`,{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(shelf)
+            });
+            return await resp.json();
+        } catch(e) {
+            console.log('oops the add bookshelf didnt work.')
+        }
+        //return $.post(this.url, plant);
+    }
+
     put = async (shelf) => {
 
         try {
